@@ -34,4 +34,20 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'string',
+        'name' => 'string',
+        'photo' => 'string',
+        'price' => 'integer',
+        'description' => 'string',
+        'stock' => 'integer',
+        'status' => 'string',
+        'category_id' => 'integer',
+    ];
 }
