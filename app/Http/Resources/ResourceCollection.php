@@ -3,11 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection as BaseResourceCollection;
 
-class ProductCollection extends ResourceCollection
+class ResourceCollection extends BaseResourceCollection
 {
-    public $collects = ProductResource::class;
+    public $collects = ResourceObject::class;
 
     /**
      * Transform the resource collection into an array.

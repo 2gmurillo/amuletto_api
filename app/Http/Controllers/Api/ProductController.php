@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\ProductCollection;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\ResourceCollection;
+use App\Http\Resources\ResourceObject;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,12 +13,12 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return ProductCollection
+     * @return ResourceCollection
      */
-    public function index(): ProductCollection
+    public function index(): ResourceCollection
     {
         $products = Product::applyFilters()->applySorts()->jsonPaginate();
-        return ProductCollection::make($products);
+        return ResourceCollection::make($products);
     }
 
     /**
@@ -35,11 +35,11 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param Product $product
-     * @return ProductResource
+     * @return ResourceObject
      */
-    public function show(Product $product): ProductResource
+    public function show(Product $product): ResourceObject
     {
-        return ProductResource::make($product);
+        return ResourceObject::make($product);
     }
 
     /**

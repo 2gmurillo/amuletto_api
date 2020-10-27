@@ -12,7 +12,9 @@ class Product extends Model
 {
     use HasFactory;
 
+    public $type = 'products';
     public $allowedSorts = ['price', 'name'];
+
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +50,18 @@ class Product extends Model
         'id' => 'string',
         'price' => 'integer',
     ];
+
+    public function fields()
+    {
+        return [
+            'name' => $this->name,
+            'photo' => $this->photo,
+            'price' => (int)$this->price,
+            'description' => $this->description,
+            'category_id' => $this->category_id,
+            'stock' => $this->stock,
+        ];
+    }
 
     public function scopeName(Builder $query, $value)
     {
