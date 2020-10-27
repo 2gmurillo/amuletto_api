@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasSorts;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
     use HasFactory;
-    use HasSorts;
 
-    protected $allowedSorts = ['price', 'name'];
+    public $allowedSorts = ['price', 'name'];
 
     /**
      * The attributes that are mass assignable.
@@ -48,4 +48,32 @@ class Product extends Model
         'id' => 'string',
         'price' => 'integer',
     ];
+
+    public function scopeName(Builder $query, $value)
+    {
+        $query->where('name', 'LIKE', "%{$value}%");
+    }
+
+    public function scopeDescription(Builder $query, $value)
+    {
+        $query->where('description', 'LIKE', "%{$value}%");
+    }
+
+    public function scopeYear(Builder $query, $value)
+    {
+        $query->whereYear('created_at', $value);
+    }
+
+    public function scopeMonth(Builder $query, $value)
+    {
+        $query->whereMonth('created_at', $value);
+    }
+
+    public function scopeSearch(Builder $query, $values)
+    {
+        foreach (Str::of($values)->explode(' ') as $value) {
+            $query->orWhere('name', 'LIKE', "%{$value}%")
+                ->orWhere('description', 'LIKE', "%{$value}%");
+        }
+    }
 }
