@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-    use HasFactory, HasSorts;
+    use HasFactory;
+    use HasSorts;
 
     protected $allowedSorts = ['price', 'name'];
 
