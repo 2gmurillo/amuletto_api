@@ -15,9 +15,15 @@ class ProductController extends Controller
      *
      * @return ProductCollection
      */
-    public function index():ProductCollection
+    public function index(): ProductCollection
     {
-        $products = Product::applySorts(request('sort'))->get();
+        $products = Product::applySorts(request('sort'))
+            ->paginate(
+                $perPage = request('page.size'),
+                $columns = ['*'],
+                $pageName = 'page[number]',
+                $page = request('page.number'),
+            )->appends(request()->except('page.number'));
         return ProductCollection::make($products);
     }
 
