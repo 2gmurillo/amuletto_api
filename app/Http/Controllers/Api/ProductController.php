@@ -13,10 +13,12 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @return ProductCollection
      */
-    public function index()
+    public function index():ProductCollection
     {
-        return ProductCollection::make(Product::all());
+        $products = Product::applySorts(request('sort'))->get();
+        return ProductCollection::make($products);
     }
 
     /**
@@ -33,8 +35,9 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param Product $product
+     * @return ProductResource
      */
-    public function show(Product $product)
+    public function show(Product $product): ProductResource
     {
         return ProductResource::make($product);
     }

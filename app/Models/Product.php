@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasSorts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSorts;
+
+    protected $allowedSorts = ['price', 'name'];
 
     /**
      * The attributes that are mass assignable.
@@ -42,12 +45,6 @@ class Product extends Model
      */
     protected $casts = [
         'id' => 'string',
-        'name' => 'string',
-        'photo' => 'string',
         'price' => 'integer',
-        'description' => 'string',
-        'stock' => 'integer',
-        'status' => 'string',
-        'category_id' => 'integer',
     ];
 }
