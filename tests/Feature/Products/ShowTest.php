@@ -18,7 +18,7 @@ class ShowTest extends TestCase
         $product = Product::factory()->create();
 
         //Act
-        $response = $this->getJson(route('api.products.show', $product));
+        $response = $this->jsonApi()->get(route('api.products.read', $product));
 
         //Assert
         $response->assertExactJson([
@@ -32,9 +32,11 @@ class ShowTest extends TestCase
                     'description' => $product->description,
                     'category_id' => $product->category_id,
                     'stock' => $product->stock,
+                    'createdAt' => $product->created_at,
+                    'updatedAt' => $product->updated_at,
                 ],
                 'links' => [
-                    'self' => url(route('api.products.show', $product)),
+                    'self' => url(route('api.products.read', $product)),
                 ],
             ]
         ]);

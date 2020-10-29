@@ -21,7 +21,7 @@ class SortTest extends TestCase
         $url = route('api.products.index', ['sort' => 'price']);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertSeeInOrder([
@@ -42,7 +42,7 @@ class SortTest extends TestCase
         $url = route('api.products.index', ['sort' => '-price']);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertSeeInOrder([
@@ -72,7 +72,7 @@ class SortTest extends TestCase
         $url = route('api.products.index') . '?sort=-price,name';
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertSeeInOrder([
@@ -85,7 +85,7 @@ class SortTest extends TestCase
         $url = route('api.products.index') . '?sort=name,-price';
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertSeeInOrder([
@@ -104,7 +104,7 @@ class SortTest extends TestCase
         $url = route('api.products.index') . '?sort=unknown';
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertStatus(400);

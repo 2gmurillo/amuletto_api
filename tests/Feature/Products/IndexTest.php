@@ -18,7 +18,7 @@ class IndexTest extends TestCase
         $products = Product::factory()->times(3)->create();
 
         //Act
-        $response = $this->getJson(route('api.products.index'));
+        $response = $this->jsonApi()->get(route('api.products.index'));
 
         //Assert
         $response->assertJsonFragment([
@@ -33,9 +33,11 @@ class IndexTest extends TestCase
                         'description' => $products[0]->description,
                         'category_id' => $products[0]->category_id,
                         'stock' => $products[0]->stock,
+                        'createdAt' => $products[0]->created_at,
+                        'updatedAt' => $products[0]->updated_at,
                     ],
                     'links' => [
-                        'self' => url(route('api.products.show', $products[0])),
+                        'self' => url(route('api.products.read', $products[0])),
                     ],
                 ],
                 [
@@ -48,9 +50,11 @@ class IndexTest extends TestCase
                         'description' => $products[1]->description,
                         'category_id' => $products[1]->category_id,
                         'stock' => $products[1]->stock,
+                        'createdAt' => $products[1]->created_at,
+                        'updatedAt' => $products[1]->updated_at,
                     ],
                     'links' => [
-                        'self' => url(route('api.products.show', $products[1])),
+                        'self' => url(route('api.products.read', $products[1])),
                     ],
                 ],
                 [
@@ -63,9 +67,11 @@ class IndexTest extends TestCase
                         'description' => $products[2]->description,
                         'category_id' => $products[2]->category_id,
                         'stock' => $products[2]->stock,
+                        'createdAt' => $products[2]->created_at,
+                        'updatedAt' => $products[2]->updated_at,
                     ],
                     'links' => [
-                        'self' => url(route('api.products.show', $products[2])),
+                        'self' => url(route('api.products.read', $products[2])),
                     ],
                 ],
             ]

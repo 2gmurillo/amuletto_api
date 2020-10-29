@@ -24,7 +24,7 @@ class FilterTest extends TestCase
         $url = route('api.products.index', ['filter[name]' => 'Amuletto']);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertJsonCount(1, 'data')
@@ -47,7 +47,7 @@ class FilterTest extends TestCase
         $url = route('api.products.index', ['filter[description]' => 'Amuletto']);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertJsonCount(1, 'data')
@@ -72,7 +72,7 @@ class FilterTest extends TestCase
         $url = route('api.products.index', ['filter[year]' => 2020]);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertJsonCount(1, 'data')
@@ -100,7 +100,7 @@ class FilterTest extends TestCase
         $url = route('api.products.index', ['filter[month]' => 2]);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertJsonCount(2, 'data')
@@ -118,7 +118,7 @@ class FilterTest extends TestCase
         $url = route('api.products.index', ['filter[unknown]' => 'unknown']);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertStatus(400);
@@ -144,7 +144,7 @@ class FilterTest extends TestCase
         $url = route('api.products.index', ['filter[search]' => 'Amuletto']);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertJsonCount(2, 'data')
@@ -177,7 +177,7 @@ class FilterTest extends TestCase
         $url = route('api.products.index', ['filter[search]' => 'Amuletto Evertec']);
 
         //Act
-        $response = $this->getJson($url);
+        $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertJsonCount(3, 'data')

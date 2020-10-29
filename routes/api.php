@@ -1,7 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ProductController;
+use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +13,6 @@ use App\Http\Controllers\Api\ProductController;
 |
 */
 
-Route::get('products/{product}', [ProductController::class, 'show'])->name('api.products.show');
-Route::get('products', [ProductController::class, 'index'])->name('api.products.index');
+JsonApi::register('default')->routes(function ($api){
+    $api->resource('products');
+});

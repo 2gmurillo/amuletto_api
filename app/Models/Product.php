@@ -12,9 +12,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    public $type = 'products';
-    public $allowedSorts = ['price', 'name'];
-
+    // public $type = 'products';
 
     /**
      * The attributes that are mass assignable.
