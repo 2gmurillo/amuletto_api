@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class Authorizer extends AbstractAuthorizer
 {
+    /**
+     * The guards to use to authenticate a user.
+     *
+     * @var array
+     */
+    protected $guards = ['sanctum'];
 
     /**
      * Authorize a resource index request.
@@ -39,7 +45,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function create($type, $request)
     {
-        // TODO: Implement create() method.
+        $this->authenticate();
     }
 
     /**
@@ -71,7 +77,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function update($product, $request)
     {
-        $this->authorize('update', $product);
+        $this->can('update', $product);
     }
 
     /**
@@ -87,7 +93,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function delete($product, $request)
     {
-        $this->authorize('delete', $product);
+        $this->can('delete', $product);
     }
 
 }
