@@ -14,6 +14,6 @@ use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 */
 
 JsonApi::register('default')->routes(function ($api){
-    $api->resource('products')->only('create', 'update')->middleware('auth');
-    $api->resource('products')->except('create', 'update');
+    $api->resource('products')->only('create', 'update', 'delete')->middleware('auth');
+    $api->resource('products')->except('create', 'update', 'delete');
 });
