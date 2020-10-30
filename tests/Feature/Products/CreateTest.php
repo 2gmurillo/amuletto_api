@@ -37,7 +37,7 @@ class CreateTest extends TestCase
     /** @test */
     public function authenticated_user_can_create_products()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
         //Arrange
         $user = User::factory()->create();
         $product = array_filter(Product::factory()->raw([

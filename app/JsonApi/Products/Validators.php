@@ -4,7 +4,7 @@ namespace App\JsonApi\Products;
 
 use App\Rules\Slug;
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Validation\Rule;
 
 class Validators extends AbstractValidators
 {
@@ -50,7 +50,7 @@ class Validators extends AbstractValidators
                 'required',
                 'alpha_dash',
                 new Slug,
-                'unique:products'
+                Rule::unique('products')->ignore($record)
             ],
             'photo' => ['required'],
         ];
