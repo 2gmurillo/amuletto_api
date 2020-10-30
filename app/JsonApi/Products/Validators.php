@@ -2,7 +2,9 @@
 
 namespace App\JsonApi\Products;
 
+use App\Rules\Slug;
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
+use Illuminate\Contracts\Validation\Rule;
 
 class Validators extends AbstractValidators
 {
@@ -44,7 +46,12 @@ class Validators extends AbstractValidators
     {
         return [
             'name' => ['required'],
-            'slug' => ['required', 'unique:products'],
+            'slug' => [
+                'required',
+                'alpha_dash',
+                new Slug,
+                'unique:products'
+            ],
             'photo' => ['required'],
         ];
     }

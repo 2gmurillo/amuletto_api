@@ -37,7 +37,7 @@ class CreateTest extends TestCase
     /** @test */
     public function authenticated_user_can_create_products()
     {
-        //$this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         //Arrange
         $user = User::factory()->create();
         $product = array_filter(Product::factory()->raw([
@@ -46,7 +46,6 @@ class CreateTest extends TestCase
         $this->assertDatabaseMissing('products', $product);
 
         //Act
-        Sanctum::actingAs($user);
         Sanctum::actingAs($user);
         $response = $this->jsonApi()->content([
             'data' => [
@@ -73,7 +72,6 @@ class CreateTest extends TestCase
         $product = Product::factory()->raw(['name' => '']);
 
         //Act
-        Sanctum::actingAs($user);
         Sanctum::actingAs($user);
         $response = $this->jsonApi()->content([
             'data' => [
@@ -146,77 +144,77 @@ class CreateTest extends TestCase
         $this->assertDatabaseMissing('products', $product);
     }
 
-//    /** @test */
-//    public function slug_must_must_only_contain_letters_numbers_and_dashes()
-//    {
-//        $user = User::factory()->create();
-//        $product = Product::factory()->raw(['slug' => '#$^^%$']);
-//
-//        Sanctum::actingAs($user);
-//        $this->jsonApi()->withData([
-//            'type' => 'products',
-//            'attributes' => $product
-//        ])->post(route('api.products.create'))
-//            ->assertStatus(422)
-//            ->assertSee('data\/attributes\/slug');
-//
-//        $this->assertDatabaseMissing('products', $product);
-//    }
-//
-//    /** @test */
-//    public function slug_must_must_not_contain_underscores()
-//    {
-//        $user = User::factory()->create();
-//        $product = Product::factory()->raw(['slug' => 'with_underscores']);
-//
-//        Sanctum::actingAs($user);
-//        $this->jsonApi()->withData([
-//            'type' => 'products',
-//            'attributes' => $product
-//        ])->post(route('api.products.create'))
-//            ->assertSee(trans('validation.no_underscores', ['attribute' => 'slug']))
-//            ->assertStatus(422)
-//            ->assertSee('data\/attributes\/slug');
-//
-//        $this->assertDatabaseMissing('products', $product);
-//    }
-//
-//    /** @test */
-//    public function slug_must_must_not_start_with_dashes()
-//    {
-//        $user = User::factory()->create();
-//        $product = Product::factory()->raw(['slug' => '-starts-with-dash']);
-//
-//        Sanctum::actingAs($user);
-//        $this->jsonApi()->withData([
-//            'type' => 'products',
-//            'attributes' => $product
-//        ])->post(route('api.products.create'))
-//            ->assertSee(trans('validation.no_starting_dashes', ['attribute' => 'slug']))
-//            ->assertStatus(422)
-//            ->assertSee('data\/attributes\/slug');
-//
-//        $this->assertDatabaseMissing('products', $product);
-//    }
-//
-//    /** @test */
-//    public function slug_must_must_not_end_with_dashes()
-//    {
-//        $user = User::factory()->create();
-//        $product = Product::factory()->raw(['slug' => 'ends-with-dash-']);
-//
-//        Sanctum::actingAs($user);
-//        $this->jsonApi()->withData([
-//            'type' => 'products',
-//            'attributes' => $product
-//        ])->post(route('api.products.create'))
-//            ->assertSee(trans('validation.no_ending_dashes', ['attribute' => 'slug']))
-//            ->assertStatus(422)
-//            ->assertSee('data\/attributes\/slug');
-//
-//        $this->assertDatabaseMissing('products', $product);
-//    }
-//
+    /** @test */
+    public function slug_must_must_only_contain_letters_numbers_and_dashes()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->raw(['slug' => '#$^^%$']);
+
+        Sanctum::actingAs($user);
+        $this->jsonApi()->withData([
+            'type' => 'products',
+            'attributes' => $product
+        ])->post(route('api.products.create'))
+            ->assertStatus(422)
+            ->assertSee('data\/attributes\/slug');
+
+        $this->assertDatabaseMissing('products', $product);
+    }
+
+    /** @test */
+    public function slug_must_must_not_contain_underscores()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->raw(['slug' => 'with_underscores']);
+
+        Sanctum::actingAs($user);
+        $this->jsonApi()->withData([
+            'type' => 'products',
+            'attributes' => $product
+        ])->post(route('api.products.create'))
+            ->assertSee(trans('validation.no_underscores', ['attribute' => 'slug']))
+            ->assertStatus(422)
+            ->assertSee('data\/attributes\/slug');
+
+        $this->assertDatabaseMissing('products', $product);
+    }
+
+    /** @test */
+    public function slug_must_must_not_start_with_dashes()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->raw(['slug' => '-starts-with-dash']);
+
+        Sanctum::actingAs($user);
+        $this->jsonApi()->withData([
+            'type' => 'products',
+            'attributes' => $product
+        ])->post(route('api.products.create'))
+            ->assertSee(trans('validation.no_starting_dashes', ['attribute' => 'slug']))
+            ->assertStatus(422)
+            ->assertSee('data\/attributes\/slug');
+
+        $this->assertDatabaseMissing('products', $product);
+    }
+
+    /** @test */
+    public function slug_must_must_not_end_with_dashes()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->raw(['slug' => 'ends-with-dash-']);
+
+        Sanctum::actingAs($user);
+        $this->jsonApi()->withData([
+            'type' => 'products',
+            'attributes' => $product
+        ])->post(route('api.products.create'))
+            ->assertSee(trans('validation.no_ending_dashes', ['attribute' => 'slug']))
+            ->assertStatus(422)
+            ->assertSee('data\/attributes\/slug');
+
+        $this->assertDatabaseMissing('products', $product);
+    }
+
 //    /** @test
 //     * @dataProvider not_valid_store_data_provider
 //     * @param string $field
