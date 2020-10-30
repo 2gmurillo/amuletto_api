@@ -15,7 +15,11 @@ class Adapter extends AbstractAdapter
      *
      * @var array
      */
-    protected $attributes = [];
+    protected $attributes = [
+        'disabledAt' => 'disabled_at',
+        'userId' => 'user_id',
+        'categoryId' => 'category_id',
+    ];
 
     /**
      * Mapping of JSON API filter names to model scopes.

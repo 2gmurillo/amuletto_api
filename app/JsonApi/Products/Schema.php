@@ -31,11 +31,14 @@ class Schema extends SchemaProvider
     {
         return [
             'name' => $product->name,
+            'slug' => $product->slug,
             'photo' => $product->photo,
             'price' => (int)$product->price,
             'description' => $product->description,
-            'category_id' => $product->category_id,
             'stock' => $product->stock,
+            'disabledAt' => $product->disabled_at,
+            'userId' => $product->user_id,
+            'categoryId' => $product->category_id,
             'createdAt' => $product->created_at,
             'updatedAt' => $product->updated_at,
         ];

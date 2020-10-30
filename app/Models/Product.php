@@ -12,8 +12,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    // public $type = 'products';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -21,23 +19,24 @@ class Product extends Model
      */
     protected $fillable = [
         'name',
+        'slug',
         'photo',
         'price',
         'description',
         'stock',
-        'status',
+        'disabled_at',
+        'user_id',
         'category_id',
     ];
 
     /**
-     * Get the category that owns the product.
+     * The attributes that are date type.
      *
-     * @return BelongsTo
+     * @var array
      */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
+    protected $dates = [
+        'disabled_at',
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -47,7 +46,28 @@ class Product extends Model
     protected $casts = [
         'id' => 'string',
         'price' => 'integer',
+        'category_id' => 'integer',
     ];
+
+    /**
+     * Get the route key for the product.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /**
+     * Get the user that owns the cart.
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function fields()
     {

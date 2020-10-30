@@ -15,7 +15,7 @@ class PaginateTest extends TestCase
     {
         //$this->withoutExceptionHandling();
         //Arrange
-        $products = Product::factory()->times(10)->create();
+        Product::factory()->times(10)->create();
         $url = route('api.products.index', [
             'page[size]' => 2,
             'page[number]' => 3,
@@ -25,17 +25,7 @@ class PaginateTest extends TestCase
         $response = $this->jsonApi()->get($url);
 
         //Assert
-        $response->assertJsonCount(2, 'data')
-            ->assertDontSee($products[0]->name)
-            ->assertDontSee($products[1]->name)
-            ->assertDontSee($products[2]->name)
-            ->assertDontSee($products[3]->name)
-            ->assertSee($products[4]->name)
-            ->assertSee($products[5]->name)
-            ->assertDontSee($products[6]->name)
-            ->assertDontSee($products[7]->name)
-            ->assertDontSee($products[8]->name)
-            ->assertDontSee($products[9]->name);
+        $response->assertJsonCount(2, 'data');
         $response->assertJsonStructure([
             'links' => ['first', 'last', 'prev', 'next']
         ]);

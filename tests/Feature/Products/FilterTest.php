@@ -86,27 +86,27 @@ class FilterTest extends TestCase
         //$this->withoutExceptionHandling();
         //Arrange
         Product::factory()->create([
-            'name' => 'Product from February',
-            'created_at' => now()->month(2)
+            'name' => 'Product from December',
+            'created_at' => now()->month(12)
         ]);
         Product::factory()->create([
-            'name' => 'Another Product from February',
-            'created_at' => now()->month(2)
+            'name' => 'Another Product from December',
+            'created_at' => now()->month(12)
         ]);
         Product::factory()->create([
-            'name' => 'Product from January',
-            'created_at' => now()->month(1)
+            'name' => 'Product from October',
+            'created_at' => now()->month(10)
         ]);
-        $url = route('api.products.index', ['filter[month]' => 2]);
+        $url = route('api.products.index', ['filter[month]' => 12]);
 
         //Act
         $response = $this->jsonApi()->get($url);
 
         //Assert
         $response->assertJsonCount(2, 'data')
-            ->assertSee('Product from February')
-            ->assertSee('Another Product from February')
-            ->assertDontSee('Product from January');
+            ->assertSee('Product from December')
+            ->assertSee('Another Product from December')
+            ->assertDontSee('Product from October');
     }
 
     /** @test */
