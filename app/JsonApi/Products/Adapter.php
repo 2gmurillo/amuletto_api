@@ -48,4 +48,9 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
+    protected function fillAttributes($product, Collection $attributes)
+    {
+        $product->fill($attributes->toArray());
+        $product->user_id = auth()->id();
+    }
 }

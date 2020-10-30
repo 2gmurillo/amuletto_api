@@ -44,6 +44,7 @@ class Validators extends AbstractValidators
     {
         return [
             'name' => ['required'],
+            'slug' => ['required', 'unique:products'],
             'photo' => ['required'],
         ];
     }
