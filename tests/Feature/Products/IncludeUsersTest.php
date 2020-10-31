@@ -29,7 +29,7 @@ class IncludeUsersTest extends TestCase
                 'related' => route('api.products.relationships.user', $product)
             ])
             ->assertJsonFragment([
-                'self' => route('api.products.relationships.user.replace', $product)
+                'self' => route('api.products.relationships.user.read', $product)
             ]);
     }
 

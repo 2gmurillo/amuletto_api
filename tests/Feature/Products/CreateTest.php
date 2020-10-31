@@ -22,11 +22,9 @@ class CreateTest extends TestCase
         ]));
 
         //Act
-        $response = $this->jsonApi()->content([
-            'data' => [
-                'type' => 'products',
-                'attributes' => $product,
-            ]
+        $response = $this->jsonApi()->withData([
+            'type' => 'products',
+            'attributes' => $product,
         ])->post(route('api.products.create'));
 
         //Assert
@@ -47,11 +45,9 @@ class CreateTest extends TestCase
 
         //Act
         Sanctum::actingAs($user);
-        $response = $this->jsonApi()->content([
-            'data' => [
-                'type' => 'products',
-                'attributes' => $product,
-            ]
+        $response = $this->jsonApi()->withData([
+            'type' => 'products',
+            'attributes' => $product,
         ])->post(route('api.products.create'));
 
         //Assert
@@ -73,11 +69,9 @@ class CreateTest extends TestCase
 
         //Act
         Sanctum::actingAs($user);
-        $response = $this->jsonApi()->content([
-            'data' => [
-                'type' => 'products',
-                'attributes' => $product,
-            ]
+        $response = $this->jsonApi()->withData([
+            'type' => 'products',
+            'attributes' => $product,
         ])->post(route('api.products.create'));
 
         //Assert
@@ -96,11 +90,9 @@ class CreateTest extends TestCase
 
         //Act
         Sanctum::actingAs($user);
-        $response = $this->jsonApi()->content([
-            'data' => [
-                'type' => 'products',
-                'attributes' => $product,
-            ]
+        $response = $this->jsonApi()->withData([
+            'type' => 'products',
+            'attributes' => $product,
         ])->post(route('api.products.create'));
 
         //Assert
@@ -229,11 +221,9 @@ class CreateTest extends TestCase
 //
 //        // Act
 //        Sanctum::actingAs($user);
-//        $response = $this->jsonApi()->content([
-//            'data' => [
+//        $response = $this->jsonApi()->$this->withData([
 //                'type' => 'products',
 //                'attributes' => $data,
-//            ]
 //        ])->post(route('api.products.create'));
 //
 //        // Assert

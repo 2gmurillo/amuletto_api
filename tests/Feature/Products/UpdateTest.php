@@ -36,14 +36,12 @@ class UpdateTest extends TestCase
 
         //Act
         Sanctum::actingAs($user = User::factory()->create());
-        $response = $this->jsonApi()->content([
-            'data' => [
-                'type' => 'products',
-                'id' => $product->getRouteKey(),
-                'attributes' => [
-                    'name' => 'Updated Name',
-                    'slug' => 'updated-name',
-                ],
+        $response = $this->jsonApi()->withData([
+            'type' => 'products',
+            'id' => $product->getRouteKey(),
+            'attributes' => [
+                'name' => 'Updated Name',
+                'slug' => 'updated-name',
             ]
         ])->patch(route('api.products.update', $product));
 
@@ -64,14 +62,12 @@ class UpdateTest extends TestCase
 
         //Act
         Sanctum::actingAs($product->user);
-        $response = $this->jsonApi()->content([
-            'data' => [
-                'type' => 'products',
-                'id' => $product->getRouteKey(),
-                'attributes' => [
-                    'name' => 'Updated Name',
-                    'slug' => 'updated-name',
-                ],
+        $response = $this->jsonApi()->withData([
+            'type' => 'products',
+            'id' => $product->getRouteKey(),
+            'attributes' => [
+                'name' => 'Updated Name',
+                'slug' => 'updated-name',
             ]
         ])->patch(route('api.products.update', $product));
 
@@ -92,13 +88,11 @@ class UpdateTest extends TestCase
 
         //Act
         Sanctum::actingAs($product->user);
-        $response = $this->jsonApi()->content([
-            'data' => [
-                'type' => 'products',
-                'id' => $product->getRouteKey(),
-                'attributes' => [
-                    'name' => 'Updated Name',
-                ],
+        $response = $this->jsonApi()->withData([
+            'type' => 'products',
+            'id' => $product->getRouteKey(),
+            'attributes' => [
+                'name' => 'Updated Name',
             ]
         ])->patch(route('api.products.update', $product));
 
@@ -118,13 +112,11 @@ class UpdateTest extends TestCase
 
         //Act
         Sanctum::actingAs($product->user);
-        $response = $this->jsonApi()->content([
-            'data' => [
-                'type' => 'products',
-                'id' => $product->getRouteKey(),
-                'attributes' => [
-                    'slug' => 'updated-name',
-                ],
+        $response = $this->jsonApi()->withData([
+            'type' => 'products',
+            'id' => $product->getRouteKey(),
+            'attributes' => [
+                'slug' => 'updated-name',
             ]
         ])->patch(route('api.products.update', $product));
 
