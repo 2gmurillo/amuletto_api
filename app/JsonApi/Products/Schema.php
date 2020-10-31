@@ -19,7 +19,7 @@ class Schema extends SchemaProvider
      */
     public function getId($resource)
     {
-        return (string) $resource->getRouteKey();
+        return (string)$resource->getRouteKey();
     }
 
     /**
@@ -41,6 +41,17 @@ class Schema extends SchemaProvider
             'categoryId' => $product->category_id,
             'createdAt' => $product->created_at,
             'updatedAt' => $product->updated_at,
+        ];
+    }
+
+    public function getRelationships($product, $isPrimary, array $includeRelationships)
+    {
+        return [
+            'user' => [
+                'data' => function () use ($product) {
+                    return $product->user;
+                }
+            ]
         ];
     }
 }

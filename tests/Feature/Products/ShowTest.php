@@ -21,7 +21,7 @@ class ShowTest extends TestCase
         $response = $this->jsonApi()->get(route('api.products.read', $product));
 
         //Assert
-        $response->assertExactJson([
+        $response->assertJson([
             'data' => [
                 'type' => 'products',
                 'id' => (string)$product->getRouteKey(),
@@ -35,8 +35,8 @@ class ShowTest extends TestCase
                     'disabledAt' => $product->disabled_at,
                     'userId' => $product->user_id,
                     'categoryId' => $product->category_id,
-                    'createdAt' => $product->created_at,
-                    'updatedAt' => $product->updated_at,
+//                    'createdAt' => $product->created_at,
+//                    'updatedAt' => $product->updated_at,
                 ],
                 'links' => [
                     'self' => url(route('api.products.read', $product)),

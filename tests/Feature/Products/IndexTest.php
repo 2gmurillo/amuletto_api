@@ -21,7 +21,7 @@ class IndexTest extends TestCase
         $response = $this->jsonApi()->get(route('api.products.index'));
 
         //Assert
-        $response->assertJsonFragment([
+        $response->assertJson([
             'data' => [
                 [
                     'type' => 'products',
@@ -36,8 +36,8 @@ class IndexTest extends TestCase
                         'disabledAt' => $products[0]->disabled_at,
                         'userId' => $products[0]->user_id,
                         'categoryId' => $products[0]->category_id,
-                        'createdAt' => $products[0]->created_at,
-                        'updatedAt' => $products[0]->updated_at,
+//                        'createdAt' => $products[0]->created_at,
+//                        'updatedAt' => $products[0]->updated_at,
                     ],
                     'links' => [
                         'self' => url(route('api.products.read', $products[0])),
@@ -56,8 +56,8 @@ class IndexTest extends TestCase
                         'disabledAt' => $products[1]->disabled_at,
                         'userId' => $products[1]->user_id,
                         'categoryId' => $products[1]->category_id,
-                        'createdAt' => $products[1]->created_at,
-                        'updatedAt' => $products[1]->updated_at,
+//                        'createdAt' => $products[1]->created_at,
+//                        'updatedAt' => $products[1]->updated_at,
                     ],
                     'links' => [
                         'self' => url(route('api.products.read', $products[1])),
@@ -76,8 +76,8 @@ class IndexTest extends TestCase
                         'disabledAt' => $products[2]->disabled_at,
                         'userId' => $products[2]->user_id,
                         'categoryId' => $products[2]->category_id,
-                        'createdAt' => $products[2]->created_at,
-                        'updatedAt' => $products[2]->updated_at,
+//                        'createdAt' => $products[2]->created_at,
+//                        'updatedAt' => $products[2]->updated_at,
                     ],
                     'links' => [
                         'self' => url(route('api.products.read', $products[2])),
