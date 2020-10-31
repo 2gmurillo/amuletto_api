@@ -15,4 +15,5 @@ use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 
 JsonApi::register('default')->routes(function ($api){
     $api->resource('products');
+    $api->resource('users')->only('index', 'read');
 });
