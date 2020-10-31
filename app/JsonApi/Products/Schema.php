@@ -48,7 +48,10 @@ class Schema extends SchemaProvider
     {
         return [
             'user' => [
-                'data' => function () use ($product) {
+                self::SHOW_RELATED => true,
+                self::SHOW_SELF => true,
+                self::SHOW_DATA => isset($includeRelationships['user']),
+                self::DATA => function () use ($product) {
                     return $product->user;
                 }
             ]

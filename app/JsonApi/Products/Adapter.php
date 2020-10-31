@@ -53,4 +53,9 @@ class Adapter extends AbstractAdapter
         $product->fill($attributes->toArray());
         $product->user_id = auth()->id();
     }
+
+    public function user()
+    {
+        return $this->belongsTo();
+    }
 }
